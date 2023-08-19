@@ -27,6 +27,7 @@ class DetectorFactory(object):
     See also Detector's sample code.
     '''
     seed = None
+    load_profiles = []
 
     def __init__(self):
         self.word_lang_prob_map = {}
@@ -38,9 +39,14 @@ class DetectorFactory(object):
             raise LangDetectException(ErrorCode.NeedLoadProfileError, 'Not found profile: ' + profile_directory)
 
         langsize, index = len(list_files), 0
+        lp = self.load_profiles
+
         for filename in list_files:
             if filename.startswith('.'):
                 continue
+            if len(lp) > 0:
+                if filename not in lp:
+                    continue
             filename = path.join(profile_directory, filename)
             if not path.isfile(filename):
                 continue
