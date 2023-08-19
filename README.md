@@ -19,7 +19,7 @@ Languages
 
 ``langdetect`` supports 55 languages out of the box ([ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)):
 
-    af, ar, bg, bn, ca, cs, cy, da, de, el, en, es, et, fa, fi, fr, gu, he,
+    af, ar, be, bg, bn, ca, cs, cy, da, de, el, en, es, et, fa, fi, fr, gu, he,
     hi, hr, hu, id, it, ja, kn, ko, lt, lv, mk, ml, mr, ne, nl, no, pa, pl,
     pt, ro, ru, sk, sl, so, sq, sv, sw, ta, te, th, tl, tr, uk, ur, vi, zh-cn, zh-tw
 
@@ -33,8 +33,10 @@ To detect the language of the text:
 >>> from langdetect import detect
 >>> detect("War doesn't show who's right, just who's left.")
 'en'
->>> detect("Ein, zwei, drei, vier")
-'de'
+>>> detect("আমি বাংলায় কথা কই")
+'bn'
+>>> detect("ami banglai kotha koi")
+'be'
 ```
 
 To find out the probabilities for the top languages:
@@ -43,6 +45,24 @@ To find out the probabilities for the top languages:
 >>> from langdetect import detect_langs
 >>> detect_langs("Otec matka syn.")
 [sk:0.572770823327, pl:0.292872522702, cs:0.134356653968]
+```
+
+To detect the language of the text from speficific profiles:
+
+```python
+from langdetect import DetectorFactory
+from langdetect import detect
+DetectorFactory.load_profiles = ['en', 'bn', 'be', 'hi']
+detect("War doesn't show who's right, just who's left.")
+```
+
+To find out the probabilities for the top languages from speficific profiles:
+
+```python
+from langdetect import DetectorFactory
+from langdetect import detect_langs
+DetectorFactory.load_profiles = ['en', 'bn', 'be', 'hi']
+detect_langs("Hello World.")
 ```
 
 **NOTE**
