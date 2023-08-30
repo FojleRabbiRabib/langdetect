@@ -9,7 +9,7 @@ Port of Nakatani Shuyo's [language-detection](https://github.com/shuyo/language-
 Installation
 ============
 
-    $ pip install langdetect
+    $ pip install git+https://github.com/FojleRabbiRabib/langdetect
 
 Supported Python versions 2.7, 3.4+.
 
