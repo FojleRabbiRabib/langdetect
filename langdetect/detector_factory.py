@@ -63,7 +63,7 @@ class DetectorFactory(object):
                 index += 1
             except IOError:
                 raise LangDetectException(ErrorCode.FileLoadError, 'Cannot open "%s"' % filename)
-            except:
+            except Exception:
                 raise LangDetectException(ErrorCode.FormatError, 'Profile format error in "%s"' % filename)
             finally:
                 if f:
@@ -80,7 +80,7 @@ class DetectorFactory(object):
                 profile = LangProfile(**json_data)
                 self.add_profile(profile, index, langsize)
                 index += 1
-            except:
+            except Exception:
                 raise LangDetectException(ErrorCode.FormatError, 'Profile format error.')
 
     def add_profile(self, profile, index, langsize):
